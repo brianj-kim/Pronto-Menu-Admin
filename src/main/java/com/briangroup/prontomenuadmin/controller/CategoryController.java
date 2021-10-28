@@ -26,7 +26,7 @@ public class CategoryController {
         return categoryRepository.save(category);
     }
 
-    @PutMapping("/category/{categoryId}")
+    @PutMapping("/categories/{categoryId}")
     public  Category updateCategory(@PathVariable Long categoryId, @Valid @RequestBody Category categoryRequest) {
         return categoryRepository.findById(categoryId).map(category -> {
             category.setName(categoryRequest.getName());
@@ -36,7 +36,7 @@ public class CategoryController {
         }).orElseThrow(() -> new ResourceNotFoundException("CategoryId " + categoryId + " not found"));
     }
 
-    @DeleteMapping("/category/{categoryId}")
+    @DeleteMapping("/categories/{categoryId}")
     public ResponseEntity<?> deleteCategory(@PathVariable Long categoryId) {
         return categoryRepository.findById(categoryId).map(category -> {
             categoryRepository.delete(category);
