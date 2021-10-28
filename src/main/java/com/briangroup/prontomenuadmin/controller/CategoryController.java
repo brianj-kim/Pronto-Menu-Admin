@@ -30,6 +30,7 @@ public class CategoryController {
     public  Category updateCategory(@PathVariable Long categoryId, @Valid @RequestBody Category categoryRequest) {
         return categoryRepository.findById(categoryId).map(category -> {
             category.setName(categoryRequest.getName());
+            category.setSubName(categoryRequest.getSubName());
             category.setDescription(categoryRequest.getDescription());
             return categoryRepository.save(category);
         }).orElseThrow(() -> new ResourceNotFoundException("CategoryId " + categoryId + " not found"));

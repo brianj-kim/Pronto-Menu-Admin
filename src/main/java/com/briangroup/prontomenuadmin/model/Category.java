@@ -13,9 +13,11 @@ public class Category extends AuditModel {
 
     @NotNull
     @Size(max = 100)
-    private String Name;
+    private String name;
 
-    @NotNull
+    @Size(max = 250)
+    private String subName;
+
     @Size(max = 250)
     private String description;
 
@@ -28,11 +30,19 @@ public class Category extends AuditModel {
     }
 
     public String getName() {
-        return Name;
+        return name;
+    }
+
+    public String getSubName() {
+        return subName;
+    }
+
+    public void setSubName(String subName) {
+        this.subName = subName;
     }
 
     public void setName(String categoryName) {
-        this.Name = categoryName;
+        this.name = categoryName;
     }
 
     public String getDescription() {
