@@ -20,13 +20,13 @@ public class MenuController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/catetory/{categoryId}/menus")
+    @GetMapping("/categories/{categoryId}/menus")
     public Page<Menu> getAllMenuByCategoryId(@PathVariable (value = "categoryId") Long categoryId,
                                              Pageable pageable) {
         return menuRepository.findByCategoryId(categoryId, pageable);
     }
 
-    @PostMapping("/catetory/{categoryId}/menus")
+    @PostMapping("/categories/{categoryId}/menus")
     public Menu creeateMenu(@PathVariable (value = "categoryId") Long categoryId,
                             @Valid @RequestBody Menu menu) {
         return categoryRepository.findById(categoryId).map(category -> {
@@ -35,7 +35,7 @@ public class MenuController {
         }).orElseThrow(() -> new ResourceNotFoundException("CategoryId " + categoryId + " not found"));
     }
 
-    @PutMapping("/catetory/{categoryId}/menus/{menuId}")
+    @PutMapping("/categories/{categoryId}/menus/{menuId}")
     public Menu updateMenu(@PathVariable (value = "categoryId") Long categoryId,
                            @PathVariable (value = "menuId") Long menuId,
                            @Valid @RequestBody Menu menuRequest) {
@@ -55,7 +55,7 @@ public class MenuController {
         }).orElseThrow(() -> new ResourceNotFoundException("MenuId " + menuId + " not found"));
     }
 
-    @DeleteMapping("/catetory/{categoryId}/menus/{menuId}")
+    @DeleteMapping("/categories/{categoryId}/menus/{menuId}")
     public ResponseEntity<?> deleteMenu(@PathVariable (value = "categoryId") Long categoryId,
                                         @PathVariable (value = "menuId") Long menuId) {
         return menuRepository.findByIdAndCategoryId(menuId, categoryId).map(menu -> {
