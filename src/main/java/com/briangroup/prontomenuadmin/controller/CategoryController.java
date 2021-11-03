@@ -6,6 +6,7 @@ import com.briangroup.prontomenuadmin.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
 
     @GetMapping("/categories")
-    public Page<Category> getAllCategories(Pageable pageable) {
+    public Page<Category> getAllCategories(@PageableDefault(size = 999) Pageable pageable) {
         return categoryRepository.findAll(pageable);
     }
 

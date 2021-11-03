@@ -11,5 +11,4 @@ public class ProntoMenuAdminApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProntoMenuAdminApplication.class, args);
 	}
-
 }
