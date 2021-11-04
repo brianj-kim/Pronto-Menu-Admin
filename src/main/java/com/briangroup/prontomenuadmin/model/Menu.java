@@ -32,8 +32,8 @@ public class Menu extends AuditModel {
     @NotNull
     private boolean available;
 
-    @Enumerated(value=EnumType.STRING)
-    @Column(name = "SpicyLevel")
+    @Enumerated(EnumType.STRING)
+    @Column(length = 9)
     private SpicyLevel spicyLevel;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
