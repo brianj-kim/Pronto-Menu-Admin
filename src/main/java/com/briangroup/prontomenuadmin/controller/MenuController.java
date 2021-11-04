@@ -28,7 +28,7 @@ public class MenuController {
     }
 
     @PostMapping("/categories/{categoryId}/menus")
-    public Menu creeateMenu(@PathVariable (value = "categoryId") Long categoryId,
+    public Menu createMenu(@PathVariable (value = "categoryId") Long categoryId,
                             @Valid @RequestBody Menu menu) {
         return categoryRepository.findById(categoryId).map(category -> {
             menu.setCategory(category);

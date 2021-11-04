@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -22,8 +23,8 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{categoryId}")
-    public Category getCategory(@PathVariable(value = "categoryId") Long categoryId) {
-        return categoryRepository.getById(categoryId);
+    public Optional<Category> getCategoryById(@PathVariable(value = "categoryId") Long categoryId) {
+        return categoryRepository.findById(categoryId);
     }
 
     @PostMapping("/categories")
