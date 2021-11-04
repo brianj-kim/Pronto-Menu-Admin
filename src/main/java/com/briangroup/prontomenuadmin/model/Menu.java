@@ -32,8 +32,9 @@ public class Menu extends AuditModel {
     @NotNull
     private boolean available;
 
-    @NotNull
-    private byte spicyLevel;
+    @Enumerated(value=EnumType.STRING)
+    @Column(name = "SpicyLevel")
+    private SpicyLevel spicyLevel;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
@@ -97,13 +98,9 @@ public class Menu extends AuditModel {
         this.available = available;
     }
 
-    public byte getSpicyLevel() {
-        return spicyLevel;
-    }
+    public SpicyLevel getSpicyLevel() { return spicyLevel; }
 
-    public void setSpicyLevel(byte spicyLevel) {
-        this.spicyLevel = spicyLevel;
-    }
+    public void setSpicyLevel(SpicyLevel spicyLevel) { this.spicyLevel = spicyLevel; }
 
     public Category getCategory() {
         return category;
