@@ -22,7 +22,7 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{categoryId}")
-    public Category getCategory(@PathVariable Long categoryId) {
+    public Category getCategory(@PathVariable(value = "categoryId") Long categoryId) {
         return categoryRepository.getById(categoryId);
     }
 
@@ -32,7 +32,7 @@ public class CategoryController {
     }
 
     @PutMapping("/categories/{categoryId}")
-    public  Category updateCategory(@PathVariable Long categoryId, @Valid @RequestBody Category categoryRequest) {
+    public  Category updateCategory(@PathVariable(value = "categoryId") Long categoryId, @Valid @RequestBody Category categoryRequest) {
         return categoryRepository.findById(categoryId).map(category -> {
             category.setName(categoryRequest.getName());
             category.setSubName(categoryRequest.getSubName());
@@ -42,7 +42,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/categories/{categoryId}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Long categoryId) {
+    public ResponseEntity<?> deleteCategory(@PathVariable(value = "categoryId") Long categoryId) {
         return categoryRepository.findById(categoryId).map(category -> {
             categoryRepository.delete(category);
             return ResponseEntity.ok().build();
