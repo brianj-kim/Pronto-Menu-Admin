@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -22,9 +23,8 @@ public class MenuController {
     private CategoryRepository categoryRepository;
 
     @GetMapping("/categories/{categoryId}/menus")
-    public Page<Menu> getAllMenuByCategoryId(@PathVariable (value = "categoryId") Long categoryId,
-                                             Pageable pageable) {
-        return menuRepository.findByCategoryId(categoryId, pageable);
+    public List<Menu> getAllMenuByCategoryId(@PathVariable (value = "categoryId") Long categoryId) {
+        return menuRepository.findByCategoryId(categoryId);
     }
 
     @PostMapping("/categories/{categoryId}/menus")
